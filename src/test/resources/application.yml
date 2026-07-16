@@ -1,0 +1,20 @@
+core:
+  security:
+    mode: local
+  crypto:
+    master-key: Y29yZS1haS1sb2NhbC1kZXYtbWFzdGVyLWtleS0wMDE=
+  provider:
+    max-response-bytes: 2097152
+    health-check-enabled: false
+    health-check-delay-ms: 300000
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 1
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    root: WARN

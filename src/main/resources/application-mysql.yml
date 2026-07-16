@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${CORE_AI_MYSQL_URL:jdbc:mysql://localhost:3306/core_ai?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC}
+    username: ${CORE_AI_MYSQL_USERNAME:core_ai}
+    password: ${CORE_AI_MYSQL_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    baseline-on-migrate: true

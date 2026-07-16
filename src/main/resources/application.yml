@@ -1,0 +1,55 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  port: ${SERVER_PORT:8104}
+  shutdown: graceful
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: core-ai
+  profiles:
+    default: sqlite,local
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jackson:
+    default-property-inclusion: non_null
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-migration-naming: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: core-ai
+    version: "@project.version@"
+    description: Enterprise AI Runtime
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+core:
+  security:
+    mode: local
+  crypto:
+    master-key: ${CORE_AI_MASTER_KEY:Y29yZS1haS1sb2NhbC1kZXYtbWFzdGVyLWtleS0wMDE=}
+  provider:
+    max-response-bytes: 2097152
+    health-check-enabled: false
+    health-check-delay-ms: 300000
+  prompt:
+    render-log-content-enabled: ${CORE_AI_PROMPT_LOG_CONTENT:false}
+    render-log-max-entries: ${CORE_AI_PROMPT_LOG_MAX_ENTRIES:200}
+    max-chain-depth: ${CORE_AI_PROMPT_MAX_CHAIN_DEPTH:10}

@@ -1,0 +1,15 @@
+server:
+  address: ${SERVER_ADDRESS:0.0.0.0}
+
+core:
+  security:
+    mode: jwt
+  crypto:
+    master-key: ${CORE_AI_MASTER_KEY}
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${CORE_IDENTITY_JWKS_URI}
