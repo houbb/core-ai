@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: core-ai
+    name: core-ai-backend
   profiles:
     default: sqlite,local
   lifecycle:
@@ -32,7 +32,7 @@ management:
 
 info:
   app:
-    name: core-ai
+    name: core-ai-backend
     version: "@project.version@"
     description: Enterprise AI Runtime
 

@@ -1,5 +1,6 @@
-# Maven
-target/
+# Maven (core-ai-backend)
+core-ai-backend/target/
+core-ai-backend/**/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -81,11 +82,11 @@ gitnexus/
 gitnexus-web
 gitnexus-web/
 
-# Node / Frontend
-node_modules/
-dist/
-build/
-coverage/
+# Node / Frontend (core-ai-frontend)
+core-ai-frontend/node_modules/
+core-ai-frontend/dist/
+core-ai-frontend/build/
+core-ai-frontend/coverage/
 *.local
 .env.local
 .env.*.local
@@ -93,8 +94,8 @@ coverage/
 # Vite
 .vite/
 
-# Data
-data/
+# Data (core-ai-backend)
+core-ai-backend/data/
 *.db
 
 # Distribution

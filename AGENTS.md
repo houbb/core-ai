@@ -4,6 +4,22 @@
 
 ---
 
+## 项目结构
+
+```
+core-ai/
+├── core-ai-backend/     # Spring Boot 后端（pom.xml、src/）
+├── core-ai-frontend/    # Vue 3 前端（package.json、vite.config.ts）
+├── README.md / CHANGELOG.md / ...
+└── .gitignore / .editorconfig
+```
+
+- 后端代码在 `core-ai-backend/` 下，Maven 命令在此目录执行
+- 前端代码在 `core-ai-frontend/` 下，npm 命令在此目录执行
+- 根目录只放全项目文档和配置文件，不放 pom.xml
+
+---
+
 # 沟通规范 ⚠️ 强制遵守
 
 **需要你向我提问时，必须使用选项列表，禁止用散文/段落罗列问题。**
@@ -60,7 +76,7 @@
 
 ## 强制触发规则 (Hard Trigger)
 
-**当用户提出以下任一类型的任务时，你必须立即调用 `unknowns-discovery` Skill（通过 Skill 工具），然后才能开始实现：**
+**当用户提出以下任一类型的任务时，你必须先执行 Unknowns Discovery 流程，然后才能开始实现：**
 
 - 新功能开发 / 新模块创建
 - 架构设计 / 数据模型设计
@@ -71,7 +87,12 @@
 - 不可逆操作（如数据库迁移、删除数据）
 - 用户需求中有主观描述词（"简单""好看""智能""自然"）
 
-**这是硬性要求，不是建议。调用方式：`Skill("unknowns-discovery", "standard")`**
+**这是硬性要求，不是建议。**
+
+**执行方式（按优先级尝试）：**
+
+1. **优先** — 调用 Skill 工具：`Skill("unknowns-discovery", "standard")`
+2. **Fallback** — 如果 Skill 不可用（返回 "Unknown skill"），则手动执行 `.agents/skills/unknowns-discovery/SKILL.md` 中定义的完整流程，产出 Unknowns Report（模板在 `templates/unknowns-report.md`）。将报告内容直接输出给用户确认，确认后再进入实现。
 
 **只有以下情况可以跳过：**
 - 单行修复（typo、注释修正）
@@ -115,16 +136,12 @@ For substantial features, architecture changes, ambiguous product work, migratio
 
 3）简明扼要的使用+变更内容
 
-# 测试
+# 文档更新
 
-实现全部的功能后+单元测试断言验证+端到端测试
+## 变更日志
 
-## 阶段完成门禁 ⚠️ 强制执行
+每一次功能全部完成后，将变更压缩更新到 CHANGELOG.md 中，版本号主动询问一下用户
 
-每一个 P 阶段必须先实现该阶段设计文档中的全部功能，然后统一执行并真实通过：
+## README
 
-1. 完整编译（后端编译 + 前端类型检查与生产构建）
-2. JUnit5 单元断言测试
-3. 端到端测试
-
-任一项未执行或未通过，禁止宣告该阶段完成。测试失败必须修复后重新执行完整验证，并在交付说明中列出实际执行命令与结果。
+README.md 也进行同步的更新，保持文档最新

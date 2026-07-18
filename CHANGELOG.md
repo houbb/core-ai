@@ -4,6 +4,7 @@
 
 ### Added
 
+- 项目结构优化：前后端分离为 `core-ai-backend/` 和 `core-ai-frontend/`
 - P1 AI Provider Runtime
 - Provider CRUD、生命周期、标签、搜索和排序
 - AES-GCM Secret 存储与掩码响应
